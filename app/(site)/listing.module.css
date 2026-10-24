@@ -1,0 +1,28 @@
+.listing {
+  padding-block: 72px 96px;
+}
+
+.title {
+  margin-bottom: 28px;
+}
+
+.titleTight {
+  margin-bottom: 12px;
+}
+
+.intro {
+  margin: 0 0 40px;
+  font-size: 18px;
+  line-height: 1.55;
+  color: var(--text-soft);
+}
+
+.count {
+  margin: 0 0 28px;
+  font-size: 18px;
+  color: var(--text-soft);
+}
+
+.empty {
+  color: var(--muted);
+}

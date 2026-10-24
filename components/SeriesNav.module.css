@@ -1,0 +1,28 @@
+.nav {
+  margin-top: 56px;
+  padding: 20px 24px;
+  border: 1px solid var(--accent-border);
+  border-radius: var(--radius);
+  background: var(--accent-soft);
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.where {
+  margin: 0;
+  font-size: 13px;
+  color: var(--text-soft);
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 8px 0 0;
+}
+
+.next {
+  margin-left: auto;
+  text-align: right;
+}

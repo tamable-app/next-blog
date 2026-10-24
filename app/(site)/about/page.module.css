@@ -1,0 +1,54 @@
+.about {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 48px 64px;
+  padding-block: 72px 96px;
+}
+
+.main {
+  flex: 999 1 480px;
+  min-width: 0;
+}
+
+.title {
+  margin-bottom: 32px;
+}
+
+.lead {
+  font-size: 22px;
+  line-height: 1.6;
+  color: var(--text);
+}
+
+.elsewhere {
+  flex: 1 1 220px;
+  align-self: flex-start;
+  padding: 20px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  font-size: 14px;
+}
+
+.label {
+  margin: 0 0 12px;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.elsewhere ul {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.elsewhere li a {
+  display: flex;
+  align-items: center;
+  min-height: 40px;
+  overflow-wrap: anywhere;
+  text-decoration: none;
+}

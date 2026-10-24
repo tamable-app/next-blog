@@ -1,0 +1,51 @@
+.hero {
+  padding-block: 96px 80px;
+}
+
+.hello {
+  margin: 0 0 24px;
+  font-size: clamp(40px, 8vw, 56px);
+  line-height: 1.05;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+}
+
+.intro {
+  margin: 0;
+  max-width: 640px;
+  font-size: 22px;
+  line-height: 1.55;
+  color: var(--text-soft);
+}
+
+.latest {
+  padding-bottom: 96px;
+}
+
+.sectionTitle {
+  margin: 0 0 8px;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.series {
+  padding-bottom: 96px;
+}
+
+.series .sectionTitle {
+  margin-bottom: 20px;
+}
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.all {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  margin-top: 16px;
+  font-size: 14px;
+}
