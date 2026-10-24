@@ -1,0 +1,41 @@
+.post {
+  padding-block: 80px 96px;
+}
+
+.meta {
+  margin: 0 0 20px;
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.meta a {
+  text-decoration: none;
+}
+
+.title {
+  margin: 0 0 20px;
+  font-size: clamp(34px, 6vw, 46px);
+  line-height: 1.1;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  color: var(--text);
+}
+
+.lead {
+  margin: 0 0 56px;
+  font-size: 21px;
+  line-height: 1.55;
+  color: var(--text-soft);
+}
+
+.cover {
+  margin: 0 0 48px;
+}
+
+.cover img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
