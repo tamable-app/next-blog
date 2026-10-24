@@ -6,9 +6,7 @@ import {
   buildRedirects,
   createContentSource,
   createTamableClient,
-  prepareHtml,
   redirectPaths,
-  toPost,
   toPostSummary,
   type PostPage,
   type TamableClient,
@@ -73,8 +71,5 @@ export async function currentRedirects(): Promise<Record<string, string> | null>
 
 /** A draft through a preview link, read fresh every time. Null once the link expired. */
 export async function preview(token: string): Promise<PostPage | null> {
-  const draft = token ? await client.preview(token) : null
-  if (!draft) return null
-  const post = toPost(draft)
-  return { ...post, html: prepareHtml(post.html), seriesNav: null }
+  return token ? createContentSource(client).previewPage(token) : null
 }
