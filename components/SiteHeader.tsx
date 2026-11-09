@@ -2,13 +2,15 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import { BLOG_PATH, SERIES_PATH } from '@tamable/blog-kit'
 import site from '@/site.config'
 import ThemeToggle from './ThemeToggle'
 import styles from './SiteHeader.module.css'
 
+// Every blog page lives under /blog, so Blog stays current on series and tag pages too.
 const links = [
-  { label: 'Blog', href: '/blog', sections: ['/blog', '/tags'] },
-  { label: 'Series', href: '/series', sections: ['/series'] },
+  { label: 'Blog', href: BLOG_PATH, sections: [BLOG_PATH] },
+  { label: 'Series', href: SERIES_PATH, sections: [SERIES_PATH] },
   { label: 'About', href: '/about', sections: ['/about'] },
 ]
 
@@ -16,6 +18,8 @@ export default function SiteHeader() {
   const pathname = usePathname()
   const isCurrent = (sections: string[]) =>
     sections.some(section => pathname === section || pathname.startsWith(`${section}/`))
+  // On /blog/series both Blog and Series light up; only the closer one is announced as the current page.
+  const closest = links.filter(link => isCurrent(link.sections)).at(-1)
 
   return (
     <header className={`${styles.header} container`}>
@@ -26,7 +30,7 @@ export default function SiteHeader() {
             key={link.href}
             href={link.href}
             className={`${styles.link} ${isCurrent(link.sections) ? styles.current : ''}`}
-            aria-current={isCurrent(link.sections) ? 'page' : undefined}
+            aria-current={link === closest ? 'page' : undefined}
           >
             {link.label}
           </Link>

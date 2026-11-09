@@ -1,11 +1,12 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
+import { tagPath } from '@tamable/blog-kit'
 import PostList from '@/components/PostList'
 import TagFilter from '@/components/TagFilter'
 import { pageMetadata } from '@/lib/site'
 import { tagCounts } from '@/lib/tags'
 import { content } from '@/lib/tamable'
-import styles from '../../listing.module.css'
+import styles from '../../../listing.module.css'
 
 type Props = { params: Promise<{ tag: string }> }
 
@@ -26,7 +27,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { tag } = await params
   const data = await load(tag)
   if (!data) return {}
-  return pageMetadata({ path: `/tags/${tag}`, title: data.tag.name, description: `Posts tagged ${data.tag.name}.` })
+  return pageMetadata({ path: tagPath(tag), title: data.tag.name, description: `Posts tagged ${data.tag.name}.` })
 }
 
 export default async function TagPage({ params }: Props) {

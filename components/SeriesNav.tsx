@@ -1,12 +1,12 @@
 import Link from 'next/link'
-import type { SeriesNav as Nav } from '@tamable/blog-kit'
+import { seriesPath, type SeriesNav as Nav } from '@tamable/blog-kit'
 import styles from './SeriesNav.module.css'
 
 export default function SeriesNav({ nav }: { nav: Nav }) {
   return (
     <nav aria-label="Series" className={styles.nav}>
       <p className={styles.where}>
-        <Link href={`/series/${nav.slug}`}>{nav.title}</Link> · part {nav.number} · {nav.total} published
+        <Link href={seriesPath(nav.slug)}>{nav.title}</Link> · part {nav.number} · {nav.total} published
       </p>
       {(nav.previous || nav.next) && (
         <p className={styles.links}>
