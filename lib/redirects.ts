@@ -1,10 +1,12 @@
+import { BLOG_PATH } from '@tamable/blog-kit'
+
 /**
  * Where an address that matches no page should go, or null for a 404. Ghost's tag and author
  * archives fall back to the nearest page when Ghost redirects are on.
  */
 export function redirectTarget(path: string, map: Record<string, string>, ghost = false): string | null {
   if (map[path]) return map[path]
-  if (ghost && (path === '/tag' || path.startsWith('/tag/'))) return '/blog'
+  if (ghost && (path === '/tag' || path.startsWith('/tag/'))) return BLOG_PATH
   if (ghost && (path === '/author' || path.startsWith('/author/'))) return '/about'
   return null
 }
