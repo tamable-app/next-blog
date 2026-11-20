@@ -5,12 +5,14 @@ A [Next.js](https://nextjs.org) starter for a blog whose posts live in a [Tamabl
 It gives you:
 
 - Posts at `/blog/{slug}`, with tags, series, reading time, cover images and the SEO fields you set in Tamable (title, description, canonical URL, Open Graph, JSON-LD)
-- Tag pages at `/tags/{tag}` and series pages at `/series` and `/series/{slug}`
+- Tag pages at `/blog/tags/{tag}` and series pages at `/blog/series` and `/blog/series/{slug}`
 - Draft previews at `/preview/{token}`: never cached, never indexed
 - An RSS feed (`/rss.xml`), a sitemap and `robots.txt`
-- Permanent redirects for posts you renamed in Tamable, and optionally for the addresses of an old Ghost blog
+- Permanent redirects for posts you renamed in Tamable, for the old `/series` and `/tags` addresses, and optionally for the addresses of an old Ghost blog
 - A webhook that checks Tamable's signature before refreshing the site's content
 - Light and dark themes, both driven by CSS variables
+
+Every blog page lives under `/blog`: posts at `/blog/{slug}`, every other section under a word of its own, so a new section never needs a new root. A post's slug can never be one of those words (`series`, `tags`, `tag`, `archive`, `feed` and a few more, `RESERVED_SLUGS` in the kit): Tamable won't give a blog post one, so a section and a post never share an address.
 
 Pages are statically generated and cached. Tamable's webhook tells the site when published content changed, and the affected pages are rebuilt on their next visit.
 
@@ -80,7 +82,7 @@ Everything read from Tamable goes through Next's data cache under one tag, `tama
 Two kinds of redirect, handled in two places:
 
 - **Trailing slashes:** `proxy.ts` answers `/blog/` with a 301 to `/blog`. It needs no data, so it runs on every request.
-- **Renamed posts and old Ghost addresses:** when an address matches no post or page, the page checks the redirect map before answering 404 (`redirectIfMoved` in `lib/tamable.ts`). The kit builds the map from the same cached Tamable data as the pages, so it changes with them when the webhook revalidates. These are 308s, the status Next gives a permanent redirect from a page; search engines treat 308 like 301.
+- **Renamed posts, moved sections and old Ghost addresses:** when an address matches no post or page, the page checks the redirect map before answering 404 (`redirectIfMoved` in `lib/tamable.ts`). The kit builds the map from the same cached Tamable data as the pages, so it changes with them when the webhook revalidates. The map also sends the old `/series`, `/series/{slug}` and `/tags/{tag}` addresses to their place under `/blog`. These are 308s, the status Next gives a permanent redirect from a page; search engines treat 308 like 301.
 
 The map isn't checked in `proxy.ts` because Next's data cache isn't available there: every request would read Tamable. When a post is renamed, the webhook also expires its old address outright, so it turns into a redirect on its very next visit.
 

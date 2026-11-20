@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { hasXPost, isoDay, type PostPage } from '@tamable/blog-kit'
+import { hasXPost, isoDay, tagPath, type PostPage } from '@tamable/blog-kit'
 import SeriesNav from './SeriesNav'
 import XEmbeds from './XEmbeds'
 import styles from './PostArticle.module.css'
@@ -14,7 +14,7 @@ export default function PostArticle({ post, preview = false }: { post: PostPage,
         <span> · {post.readingMinutes} min</span>
         {post.tags.map(tag => (
           <span key={tag.slug}>
-            <span> · </span><Link href={`/tags/${tag.slug}`}>{tag.name}</Link>
+            <span> · </span><Link href={tagPath(tag.slug)}>{tag.name}</Link>
           </span>
         ))}
       </p>

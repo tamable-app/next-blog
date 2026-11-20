@@ -1,10 +1,11 @@
+import { SERIES_PATH } from '@tamable/blog-kit'
 import SeriesCard from '@/components/SeriesCard'
 import { pageMetadata } from '@/lib/site'
 import { content } from '@/lib/tamable'
-import listing from '../listing.module.css'
-import styles from '../page.module.css'
+import listing from '../../listing.module.css'
+import styles from '../../page.module.css'
 
-export const metadata = pageMetadata({ path: '/series', title: 'Series', description: 'Posts that belong together, in order.' })
+export const metadata = pageMetadata({ path: SERIES_PATH, title: 'Series', description: 'Posts that belong together, in order.' })
 
 export default async function SeriesIndex() {
   const series = await content().seriesSummaries()

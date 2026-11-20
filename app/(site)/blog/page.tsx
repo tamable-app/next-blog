@@ -1,3 +1,4 @@
+import { BLOG_PATH } from '@tamable/blog-kit'
 import PostList from '@/components/PostList'
 import TagFilter from '@/components/TagFilter'
 import { pageMetadata } from '@/lib/site'
@@ -5,7 +6,7 @@ import { tagCounts } from '@/lib/tags'
 import { content } from '@/lib/tamable'
 import styles from '../listing.module.css'
 
-export const metadata = pageMetadata({ path: '/blog', title: 'Blog', description: 'Everything I have written, newest first.' })
+export const metadata = pageMetadata({ path: BLOG_PATH, title: 'Blog', description: 'Everything I have written, newest first.' })
 
 export default async function Blog() {
   const posts = await content().postSummaries()

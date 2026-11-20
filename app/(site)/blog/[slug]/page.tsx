@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
+import { postPath } from '@tamable/blog-kit'
 import PostArticle from '@/components/PostArticle'
 import { pageMetadata, siteUrl } from '@/lib/site'
 import { content, redirectIfMoved } from '@/lib/tamable'
@@ -50,7 +51,7 @@ export default async function PostRoute({ params }: Props) {
   const { slug } = await params
   const post = await content().postPage(slug)
   if (!post) {
-    await redirectIfMoved(`/blog/${slug}`)
+    await redirectIfMoved(postPath(slug))
     notFound()
   }
 

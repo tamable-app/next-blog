@@ -1,10 +1,10 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import { isoDay } from '@tamable/blog-kit'
+import { isoDay, SERIES_PATH, seriesPath } from '@tamable/blog-kit'
 import { pageMetadata } from '@/lib/site'
 import { content } from '@/lib/tamable'
-import listing from '../../listing.module.css'
+import listing from '../../../listing.module.css'
 import styles from './page.module.css'
 
 type Props = { params: Promise<{ slug: string }> }
@@ -20,7 +20,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const series = await content().seriesDetail(slug)
   if (!series) return {}
   return pageMetadata({
-    path: `/series/${slug}`,
+    path: seriesPath(slug),
     title: series.title,
     description: series.description ?? `${series.posts.length} posts in order.`,
   })
@@ -36,7 +36,7 @@ export default async function SeriesPage({ params }: Props) {
 
   return (
     <div className={`container ${listing.listing}`}>
-      <p className="eyebrow"><Link href="/series" className={styles.crumb}>Series</Link></p>
+      <p className="eyebrow"><Link href={SERIES_PATH} className={styles.crumb}>Series</Link></p>
       <h1 className={`page-title ${listing.titleTight}`}>{series.title}</h1>
       {series.description && <p className={styles.description}>{series.description}</p>}
       <p className={styles.facts}>

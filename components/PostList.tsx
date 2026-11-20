@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { isoDay, monthDay, year, type PostSummary } from '@tamable/blog-kit'
+import { isoDay, monthDay, tagPath, year, type PostSummary } from '@tamable/blog-kit'
 import styles from './PostList.module.css'
 
 export default function PostList({ posts, byYear = false, showTags = false }: {
@@ -34,7 +34,7 @@ export default function PostList({ posts, byYear = false, showTags = false }: {
                   {post.excerpt && <p className={styles.excerpt}>{post.excerpt}</p>}
                   {showTags && post.tags.length > 0 && (
                     <p className={styles.tags}>
-                      {post.tags.map(tag => <Link key={tag.slug} href={`/tags/${tag.slug}`}>{tag.name}</Link>)}
+                      {post.tags.map(tag => <Link key={tag.slug} href={tagPath(tag.slug)}>{tag.name}</Link>)}
                     </p>
                   )}
                 </div>
